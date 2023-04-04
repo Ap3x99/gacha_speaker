@@ -59,11 +59,11 @@ else
     
     RegisterNetEvent('gacha_speaker:playSong', function(data)
         local Player = QBCore.Functions.GetPlayer(source)
-        local playerItem = Player.Functions.GetItemByName("speaker")
+        local playerItem = Player.Functions.GetItemByName("boombox")
         if playerItem ~= nil then
             if playerItem.amount >= 1 then
                 table.insert(Array, data)
-                Player.Functions.RemoveItem('speaker', 1)
+                Player.Functions.RemoveItem('boombox', 1)
                 TriggerClientEvent('gacha_speaker:updateArray', -1, data)
             end
         else
@@ -84,14 +84,14 @@ else
         local Player = QBCore.Functions.GetPlayer(source)
         table.remove(Array, index)
         TriggerClientEvent('gacha_speaker:deleteSpeaker', -1, index)
-        Player.Functions.AddItem('speaker', 1)
+        Player.Functions.AddItem('boombox', 1)
     end)
     
     QBCore.Functions.CreateCallback('gacha_speaker:getArray', function(source, cb)
         cb(Array)
     end)
     
-    QBCore.Functions.CreateUseableItem('speaker', function(source)
+    QBCore.Functions.CreateUseableItem('boombox', function(source)
         TriggerClientEvent('gacha_speaker:placeSpeaker', source)
     end)
 end
